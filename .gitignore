@@ -1,0 +1,6 @@
+.cache
+pip-log.txt
+.venv/
+docs/_build
+
+.*.sw?
