@@ -12,7 +12,7 @@ import sy1 as sy
 setup(
     name='sy',
     version=sy.__version__,
-    url='http://bitbucket.org/pauldiacon/sy',
+    url='http://github.com/pauldiacon/sy.git',
     license='BSD',
     author='Paul Diaconescu',
     author_email='p@feedem.net',
