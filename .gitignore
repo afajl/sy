@@ -2,5 +2,8 @@
 pip-log.txt
 .venv/
 docs/_build
+build
+dist
+sy.egg-info
 
 .*.sw?
