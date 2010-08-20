@@ -26,9 +26,9 @@ from sy1._internal import dynload_module
 #
 # Things that should live directly under sy.
 objects = {
-    'sy.exception':     ['Error', 'UserError', 'CommandError', 
-                         'CommandTimeoutError'],
-    'sy.log':           ['out'],
+    __name__ + '.exception':     ['Error', 'UserError', 'CommandError', 
+                                  'CommandTimeoutError'],
+    __name__ + '.log':           ['out'],
 }
 
 # Modules that should be accessible from sy.
