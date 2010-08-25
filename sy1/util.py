@@ -40,7 +40,7 @@ def memoize(f):
         uname('r') # cached value returned
         
 
-    The decorator pickles the arguments and uses the that as the cache key.
+    The decorator creates a pickle of the arguments and uses it as cache key.
     If the arguments cant be pickled it will throw a :exc:`pickle.PickleError`.
     '''
     cache = {}
