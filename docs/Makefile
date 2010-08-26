@@ -86,3 +86,11 @@ doctest:
 	$(SPHINXBUILD) -b doctest $(ALLSPHINXOPTS) _build/doctest
 	@echo "Testing of doctests in the sources finished, look at the " \
 	      "results in _build/doctest/output.txt."
+
+dev_publish: html
+	cp _gae/* _build/
+	dev_appserver.py `pwd`/_build
+
+publish:
+	appcfg.py update `pwd`/_build
+
