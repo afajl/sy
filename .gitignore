@@ -1,9 +1,10 @@
-.cache
-pip-log.txt
-.venv/
-docs/_build
-build
-dist
-sy.egg-info
+/.cache
+/pip-log.txt
+/.venv/
+/docs/_build/
+/build/
+/dist/
+/sy.egg-info/
 
+*.py[co]
 .*.sw?
