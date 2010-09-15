@@ -101,11 +101,15 @@ def attempt_to(func, *args, **kwargs):
         try:
             res = func(*args, **kwargs)
             if isinstance(res, tuple):
-                ok = res[0]
-                if len(res) > 2:
-                    ret = res[1:]
-                else:
-                    ret = res[1]
+                l = len(res)
+                if l == 0:
+                    ok = ret = res # empty tuple is falsy
+                elif l == 1:
+                    ok = ret = res[0]
+                elif l == 2:
+                    ok, ret = res
+                elif l > 2:
+                    ok, ret = res[0], res[1:]
             else:
                 ok = res
                 ret = res

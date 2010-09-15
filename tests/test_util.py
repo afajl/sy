@@ -85,6 +85,18 @@ def test_attempt_ret():
         assert False, 'falsy should fail'
     except: pass
 
+    def empty(): return ()
+    try:
+        sy.util.attempt_to(empty, backoff=0)
+        assert False, 'empty should fail'
+    except: pass
+ 
+    def true_tuple(): return (True,)
+    ret = sy.util.attempt_to(true_tuple)
+    eq_(ret, True)
+ 
+
+
 def test_attempt_exc():
     attempts = []
     def ex(): 
