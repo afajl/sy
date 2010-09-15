@@ -86,7 +86,8 @@ def attempt_to(func, *args, **kwargs):
     ==================  ===========
 
     If the function raises an exception on the last attempt it propagates
-    to the caller.
+    to the caller. Note that exceptions that occur before the last attempt
+    are hidden.
 
     If the function does not succeed an :exc:`sy.Error` is raised.
 
