@@ -1,4 +1,4 @@
-application: sy-doc
+application: doc-sy
 version: 1
 runtime: python
 api_version: 1

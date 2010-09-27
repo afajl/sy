@@ -4,7 +4,7 @@ sy.exception
    :synopsis: Exceptions used by the library
 
 
-.. moduleauthor: Paul Diaconescu <p@feedem.se>
+.. moduleauthor: Paul Diaconescu <p@afajl.com>
 """
 
 class Error(Exception):

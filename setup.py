@@ -15,7 +15,7 @@ setup(
     url='http://github.com/pauldiacon/sy.git',
     license='BSD',
     author='Paul Diaconescu',
-    author_email='p@feedem.net',
+    author_email='p@afajl.com',
     description='Simple tools for system administration tasks',
     long_description=sy.path.slurp('README.rst'),
     classifiers=[

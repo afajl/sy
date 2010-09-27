@@ -1,7 +1,7 @@
 '''
 :synopsis: Utilities for working with ip addressing and hosts
 
-.. moduleauthor:: Paul Diaconescu <p@feedem.se>
+.. moduleauthor:: Paul Diaconescu <p@afajl.com>
 '''
 import socket
 

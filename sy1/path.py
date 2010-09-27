@@ -2,7 +2,7 @@
 
 :synopsis: Simplify operations on files and directories
 
-.. moduleauthor: Paul Diaconescu <p@feedem.se>
+.. moduleauthor: Paul Diaconescu <p@afajl.com>
 """
 
 

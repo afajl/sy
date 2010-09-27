@@ -10,7 +10,7 @@ class TestSendmail(object):
         self.original_SMTP = smtplib.SMTP
         self.smtp = None
         self.inbox = []
-        self.msg = [('to', ['p@feedem.se']), 
+        self.msg = [('to', ['p@afajl.com']), 
                     ('subject', 'subject'), 
                     ('message', 'message'),
                     ('sender', 'foo@bar')]

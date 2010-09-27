@@ -3,7 +3,7 @@
    
     
 
-.. moduleauthor: Paul Diaconescu <p@feedem.se>
+.. moduleauthor: Paul Diaconescu <p@afajl.com>
 ''' 
 import time
 import os

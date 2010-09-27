@@ -2,7 +2,7 @@
 :synopsis: Prompt users for information
 
 
-.. moduleauthor: Paul Diaconescu <p@feedem.se>
+.. moduleauthor: Paul Diaconescu <p@afajl.com>
 '''
 import re
 
