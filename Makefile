@@ -1,7 +1,7 @@
 # Makefile for Sy
 #
 
-.PHONY: test docs publish_docs pypi publish
+.PHONY: test docs publish_docs readme pypi publish
 
 test:
 	@(nosetests -a "!host" tests)
@@ -17,8 +17,8 @@ publish_docs: docs
 	@(appcfg.py update docs/_build)
 
 readme:
-	@(cp docs/intro.rst README.rst)
-	@echo "Copied docs/intro.rst to README.rst"
+	@(cat docs/readme_head.rst docs/intro.rst > README.rst)
+	@echo "Copied docs/readme_head and intro.rst to README.rst"
 
 pypi: readme 
 	@(python setup.py bdist_egg release upload)

@@ -1,3 +1,9 @@
+
+
+**Documentation:** http://sy.afajl.com
+
+**Source:** http://github.com/pauldiacon/sy
+
 This library is a set of easy to use modules to help with automation of 
 system administration tasks. To use the library import the version you want as 
 ``sy`` in your script::

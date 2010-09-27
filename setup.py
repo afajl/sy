@@ -25,7 +25,7 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Operating System :: Unix',
         'Programming Language :: Python',
-        'Topic :: System :: Systems Administration'
+        'Topic :: System :: Systems Administration',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
     packages=['sy1', 'sy1.net', 'sy1.net.intf'],

@@ -2,7 +2,7 @@
 #   import sy
 #   sy.cmd.run(('ifconfig', '-a'))
 
-__version__ = '1.0'
+__version__ = '0.2'
 
 # add library to python path
 import sys
