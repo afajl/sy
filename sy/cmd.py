@@ -10,10 +10,19 @@ import os
 import select
 import signal
 import re
+import subprocess
 
 import sy as sy
 
 CMD_TIMEOUT=60
+
+
+class _subprocess(object):
+    def __init__(self, cmd, cwd=None, shell=True, kill_tree=True, 
+                 timeout=CMD_TIMEOUT):
+
+    # see http://stackoverflow.com/questions/1191374/subprocess-with-timeout
+
 
 
 class _subprocess(object):
