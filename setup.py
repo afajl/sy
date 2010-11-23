@@ -6,7 +6,7 @@ try:
 except ImportError:
     from distutils.core import setup
 
-import sy1 as sy
+import sy
 
 
 setup(
@@ -28,9 +28,9 @@ setup(
         'Topic :: System :: Systems Administration',
         'Topic :: Software Development :: Libraries :: Python Modules'
     ],
-    packages=['sy1', 'sy1.net', 'sy1.net.intf'],
+    packages=['sy', 'sy.net', 'sy.net.intf'],
     package_data={
-        'sy1': ['lib/*']
+        'sy': ['lib/*']
     },
     platforms='Python 2.4 and later on Unix'
 )

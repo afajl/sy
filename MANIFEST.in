@@ -1,5 +1,5 @@
 include Makefile LICENSE TODO
-recursive-include sy1/lib *
+recursive-include sy/lib *
 recursive-include tests *
 recursive-include docs *
 prune docs/_build/doctrees

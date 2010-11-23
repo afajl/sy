@@ -26,9 +26,9 @@ except ImportError:
     import md5
     md5 = md5.new
 
-import sy1 as sy
+import sy
 
-from sy1._internal import _missing
+from sy._internal import _missing
 
 # _______________________________
 # write files

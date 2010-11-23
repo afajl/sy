@@ -3,7 +3,7 @@
 
 '''
 
-import sy1 as sy
+import sy
 
 import urllib
 import os

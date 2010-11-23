@@ -4,7 +4,7 @@ import logging.handlers
 import sys
 import inspect
 import os.path
-import sy1 as sy
+import sy
 
 _quiet = False
 

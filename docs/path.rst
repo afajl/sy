@@ -16,7 +16,7 @@ Write string to a file
 ......................
 :: 
 
-    import sy1 as sy
+    import sy
 
     # Write 'hello world' to /tmp/hello
     sy.path.dump('/tmp/hello', 'hello world\n')
@@ -30,7 +30,7 @@ Extract an archive
 ..................
 :: 
 
-    import sy1 as sy
+    import sy
 
     # Extract /var/tmp/huge.tar.bz2 to /var/tmp 
     sy.path.extract('/var/tmp/huge.tar.bz2', '/var/tmp')
@@ -44,7 +44,7 @@ Getting file content
 ....................
 ::
 
-    import sy1 as sy
+    import sy
 
     # Return content of file as a string
     sy.path.slurp('/tmp/hello')
@@ -63,7 +63,7 @@ Checking content
 ................
 ::
 
-    import sy1 as sy
+    import sy
 
     # Check if file contains pattern
     sy.path.contains('/tmp/hello', 'hell.*world')
@@ -85,7 +85,7 @@ safe as possible and should fail nicely without corrupting files.
 
 ::
 
-    import sy1 as sy
+    import sy
 
     # Remove all lines matching 'b.*world' from file
     sy.path.remove_lines('/tmp/hello', r'b.*world')
@@ -104,7 +104,7 @@ Path operations
 ---------------
 ::
 
-    import sy1 as sy
+    import sy
 
     # Clean up and expand paths
     sy.path.expandpath('$JAVA_HOME/bin')

@@ -1,5 +1,5 @@
 from nose.tools import assert_raises, eq_
-import sy1 as sy
+import sy
 
 def test_memoize_simple():
     called = [0]

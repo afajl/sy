@@ -14,7 +14,7 @@ Run a command with a timeout
 ----------------------------
 ::
 
-  import sy1 as sy
+  import sy
 
   status, out, err = sy.cmd.run('find / -name {}', '*.pl', timeout=90)
   print out
@@ -29,7 +29,7 @@ Fail if exit status is not ok
 -----------------------------
 ::
   
-  import sy1 as sy
+  import sy
 
   out, err = sy.cmd.do('ifconfig xxge0 up', 
                         prefix='Could not take up interface')
@@ -65,7 +65,7 @@ Loop through stdout
 To loop through the stdout lines of a command you can use :func:`sy.cmd.outlines`
 which takes the same arguments as :func:`sy.cmd.do`::
 
-  import sy1 as sy
+  import sy
 
   # print the IP of the default route
 

@@ -3,7 +3,7 @@ import util
 
 
 import smtplib
-import sy1 as sy
+import sy
 
 class TestSendmail(object):
     def __init__(self):

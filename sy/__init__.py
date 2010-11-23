@@ -8,7 +8,7 @@ __version__ = '0.2'
 import sys
 import os.path
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'lib'))
-from sy1._internal import dynload_module
+from sy._internal import dynload_module
 
 
 # So what is this?

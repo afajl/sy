@@ -7,7 +7,7 @@ Sending email
 =============
 ::
 
-    import sy1 as sy
+    import sy
 
     sy.net.sendmail(to=['unix@foo.com', 'me@foo.com'],
                        subject='Script output',
@@ -23,7 +23,7 @@ Downloading files
 =================
 :: 
 
-    import sy1 as sy
+    import sy
 
     # Downloads file from http server
     sy.net.download('http://server/file.tgz', '/var/tmp/myfile.tgz')

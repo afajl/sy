@@ -11,8 +11,8 @@ import time
 import re
 import os
 
-import sy1 as sy
-from sy1._internal import _missing
+import sy
+from sy._internal import _missing
 
 
 
@@ -290,7 +290,7 @@ def find(default=_missing, **kwargs):
 
     Keyword argument must match the attributes of the :class:`Interface`. Example::
 
-        import sy1 as sy
+        import sy
 
         sy.net.intf.find(ipaddress='10.0.0.1')
         ['<Interface: e1000g0>']

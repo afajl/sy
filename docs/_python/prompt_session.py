@@ -1,4 +1,4 @@
-import sy1 as sy
+import sy
 
 # Ask a yes or no question
 yes = sy.prompt.confirm('Do you want to add a mailserver? [y/n]: ')

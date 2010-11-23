@@ -3,7 +3,7 @@ system administration tasks. To use the library import the version you want as
 ``sy`` in your script::
 
   # Import the library
-  import sy1 as sy
+  import sy
 
   # Replace lines in '/etc/hosts' that match nis.*
   sy.path.replace_lines('/etc/hosts', 'nis.*', '10.2.3.1 ldap')
@@ -31,9 +31,6 @@ system administration tasks. To use the library import the version you want as
      sy.log.warning('Ssh is down on bart') 
   
 
-Changes in the ``sy1`` library is guaranteed to *not* break your code. 
-When incompatible changes are introduced new version will be installed as 
-``sy2``, ``sy3`` and so on.
 
 The library is heavily inspired by `Werkzeug`_ which is a great WSGI utility 
 collection.

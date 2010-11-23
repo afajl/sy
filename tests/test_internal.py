@@ -1,5 +1,5 @@
 from nose.tools import eq_
-from sy1._internal import platform_select
+from sy._internal import platform_select
 
 def test_platform_select():
     options = [

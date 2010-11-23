@@ -11,7 +11,7 @@ import select
 import signal
 import re
 
-import sy1 as sy
+import sy as sy
 
 CMD_TIMEOUT=60
 
@@ -104,7 +104,7 @@ _find_search_path = []
 def find(cmd_name):
     ''' Search for the command and return the full path
 
-    >>> import sy1 as sy
+    >>> import sy
     >>> sy.cmd.find('ifconfig')
     '/usr/sbin/ifconfig'
 

@@ -7,7 +7,7 @@ Logging - sy.log
 This module allows you to very fast set up rotating file logs, log
 and forget::
 
-    import sy1 as sy
+    import sy
 
     # Set up log file at /var/my.log
     sy.log.to_file('/var/my.log')
@@ -18,7 +18,7 @@ and forget::
 
 You can add as many loggers as you want::
 
-    import sy1 as sy
+    import sy
 
     # A file that contains all loglevels
     sy.log.to_file('/var/debug.log', level='debug')
@@ -43,7 +43,7 @@ You can add as many loggers as you want::
 If you want to place a log file in the same directory as the script you can use 
 the ``__file__`` variable::
 
-    import sy1 as sy
+    import sy
     import os.path
 
     # Get the dir where this script is located and 
@@ -89,7 +89,7 @@ Its a good idea to use :func:`sy.out` to print to the screen.
 The method allows you to log output to a file at the same time
 and make it easy to implement a quiet mode::
 
-    import sy1 as sy
+    import sy
 
     # Write to the screen
     sy.out('Hi', name)
@@ -131,7 +131,7 @@ and make it easy to implement a quiet mode::
 Exceptions
 ==========
 
-.. automodule:: sy1
+.. automodule:: sy
 
   .. autoexception:: sy.Error
   .. autoexception:: sy.UserError

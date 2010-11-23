@@ -1,5 +1,5 @@
 from nose.tools import assert_raises, eq_
-import sy1 as sy
+import sy
 
 echocmd = 'echo stdout; echo stderr > /dev/fd/2'
 

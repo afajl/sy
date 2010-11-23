@@ -1,4 +1,4 @@
-import sy1 as sy
+import sy
 
 # sub modules
 import ip

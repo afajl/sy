@@ -1,6 +1,6 @@
 from nose.tools import assert_raises
 
-import sy1 as sy
+import sy
 
 import testhost
 

@@ -3,7 +3,7 @@ import time
 import traceback
 import cPickle as pickle
 
-import sy1 as sy
+import sy
 
 
 def fail(*args, **kwargs):
@@ -62,7 +62,7 @@ def attempt_to(func, *args, **kwargs):
     the first value is a bool indicating if the function was successfull::
 
 
-        >>> import sy1 as sy
+        >>> import sy
         >>> def ok_sometimes(a):
         ...     return True, 'Yes ' + a
 

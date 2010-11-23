@@ -1,5 +1,5 @@
 
-from sy1._internal import platform_module
+from sy._internal import platform_module
 
 __all__ = ('Interface', 'addif', 'all', 'check', 'configure', 'find', 'get',
            'refresh', 'unconfigure')

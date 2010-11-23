@@ -2,7 +2,7 @@ from nose.tools import eq_, with_setup, assert_raises
 import util
 import urllib2
 
-import sy1 as sy
+import sy
 
 def teardown():
     util.tmppath.teardown()

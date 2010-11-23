@@ -1,6 +1,6 @@
-===
-sy1
-===
+==
+sy
+==
 
 .. toctree::
    :maxdepth: 2
