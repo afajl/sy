@@ -18,14 +18,6 @@ CMD_TIMEOUT=60
 
 
 class _subprocess(object):
-    def __init__(self, cmd, cwd=None, shell=True, kill_tree=True, 
-                 timeout=CMD_TIMEOUT):
-
-    # see http://stackoverflow.com/questions/1191374/subprocess-with-timeout
-
-
-
-class _subprocess(object):
     ''' Class representing a subprocess. Example usage:
 
         >>> proc = _subprocess('ls')
