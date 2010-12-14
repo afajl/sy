@@ -20,6 +20,9 @@ readme:
 	@(cat docs/readme_head.rst docs/intro.rst > README.rst)
 	@echo "Copied docs/readme_head and intro.rst to README.rst"
 
+egg: readme 
+	@(python setup.py bdist_egg release)
+ 
 pypi: readme 
 	@(python setup.py bdist_egg release upload)
 

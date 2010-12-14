@@ -2,12 +2,11 @@
 #   import sy
 #   sy.cmd.run(('ifconfig', '-a'))
 
-__version__ = '0.2'
+__version__ = '0.3'
 
 # add library to python path
 import sys
 import os.path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'lib'))
 from sy._internal import dynload_module
 
 

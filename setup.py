@@ -32,5 +32,6 @@ setup(
     package_data={
         'sy': ['lib/*']
     },
-    platforms='Python 2.4 and later on Unix'
+    platforms='Python 2.4 and later on Unix',
+    install_requires=['logbook>=0.3', 'ipaddr>=2.0.0']
 )
