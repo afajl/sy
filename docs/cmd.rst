@@ -101,6 +101,7 @@ sy.cmd content
 ==============
 
 .. automodule:: sy.cmd
+
   .. autoexception:: CommandError
 
   .. autoexception:: CommandTimeoutError

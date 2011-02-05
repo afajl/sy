@@ -12,7 +12,7 @@ import sy, sy.path
 setup(
     name='sy',
     version=sy.__version__,
-    url='http://github.com/pauldiacon/sy',
+    url='http://sy.afajl.com',
     license='BSD',
     author='Paul Diaconescu',
     author_email='p@afajl.com',
