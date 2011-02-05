@@ -6,13 +6,13 @@ try:
 except ImportError:
     from distutils.core import setup
 
-import sy
+import sy, sy.path
 
 
 setup(
     name='sy',
     version=sy.__version__,
-    url='http://github.com/pauldiacon/sy.git',
+    url='http://github.com/pauldiacon/sy',
     license='BSD',
     author='Paul Diaconescu',
     author_email='p@afajl.com',

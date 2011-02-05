@@ -1,5 +1,5 @@
 from nose.tools import assert_raises, eq_
-import sy
+import sy.cmd
 
 echocmd = 'echo stdout; echo stderr > /dev/fd/2'
 
@@ -64,7 +64,7 @@ def test_run_timeout_read():
         returncode, out, err = sy.cmd.run('echo first; sleep 2; echo second',
                                       timeout=1)
         assert False, 'There should be a timeout'
-    except sy.CommandTimeoutError, e:
+    except sy.cmd.CommandTimeoutError, e:
         eq_(e.out, 'first\n')
 
 def test_run_timeout():
@@ -72,7 +72,7 @@ def test_run_timeout():
     try:
         sy.cmd.run(cmd, timeout=1) 
         assert False, 'There should be a timeout'
-    except sy.CommandTimeoutError, e:
+    except sy.cmd.CommandTimeoutError, e:
         eq_(str(e), 'Command "%s" timed out after 1 secs' % cmd) 
         eq_(e.out, 'stdout\n')
         eq_(e.err, 'stderr\n')
@@ -81,7 +81,7 @@ def test_run_timeout():
 
 def test_run_timeout_block():
     errcmd = lambda: sy.cmd.run('cat', timeout=1)
-    assert_raises(sy.CommandTimeoutError, errcmd)
+    assert_raises(sy.cmd.CommandTimeoutError, errcmd)
  
 def test_run_no_cmd():
     try:
@@ -110,7 +110,7 @@ def test_do_fail():
     try:
         sy.cmd.do(echocmd, expect=1)
         assert False
-    except sy.CommandError, e:
+    except sy.cmd.CommandError, e:
         eq_(str(e), 'Command "%s" did not exit with status 1: stderr' % echocmd)
         eq_(e.out, 'stdout\n')
         eq_(e.err, 'stderr\n')
@@ -121,29 +121,4 @@ def test_do_bad_keyword():
         assert False
     except AssertionError, e:
         eq_(str(e), 'Unknown keyword arg passed to run: bad_keyword')
-
-def test_do_prefix():
-    try:
-        sy.cmd.do(echocmd, expect=1, prefix='prefix')
-        assert False
-    except sy.CommandError, e:
-        eq_(str(e), 'prefix: Command "%s" did not exit with status 1: stderr' % echocmd)
-        eq_(e.out, 'stdout\n')
-        eq_(e.err, 'stderr\n')
-
-def test_do_prefix_timeout():
-    cmd = echocmd + '; sleep 2'
-    try:
-        sy.cmd.do(cmd, expect=1, prefix='prefix', timeout=1)
-        assert False
-    except sy.CommandTimeoutError, e:
-        eq_(str(e), 'prefix: Command "%s" timed out after 1 secs' % cmd)
-        eq_(e.out, 'stdout\n')
-        eq_(e.err, 'stderr\n')
- 
- 
-
-
-
-
 

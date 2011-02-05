@@ -1,10 +1,10 @@
-import sy
+import sy.prompt
 
 # Ask a yes or no question
 yes = sy.prompt.confirm('Do you want to add a mailserver? [y/n]: ')
 
 if not yes:
-    sy.out('I know you want one!')
+    print 'I know you want one!'
 print
 
 # Mailserver choices
@@ -30,6 +30,5 @@ mailsperhour = sy.prompt.ask('  How many mails are you expecting per hour?: ',
 domainname = sy.prompt.ask('  Whats you domainname?: ', checks=[
                             ('^\w+\.\w+$', 'Enter a domain like foo.com')])
 print
-sy.out('Ok, setting up', mailserver, 'on', domainname, 
-       'expecting %d m/h' % mailsperhour)
+print 'Ok, setting up', mailserver, 'on', domainname, 'expecting %d m/h' % mailsperhour
 

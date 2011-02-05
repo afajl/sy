@@ -3,7 +3,8 @@ import util
 
 
 import smtplib
-import sy
+import sy.net
+import sy.path
 
 class TestSendmail(object):
     def __init__(self):
@@ -37,7 +38,6 @@ class TestSendmail(object):
                     'to': to,
                     'message': message})
                 return []
-
 
             def quit(self):
                 self.has_quit = True
@@ -131,6 +131,8 @@ class TestSendmail(object):
                                 mimeattach=mimeattach)
         
     def test_timeout(self):
+        if not sy.net.ip.port_is_open('127.0.0.1', 25):
+            return
         smtplib.SMTP = self.original_SMTP
         msg = {'mailhost': 'localhost',
                'mailport': 25, 

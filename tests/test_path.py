@@ -5,7 +5,7 @@ import tempfile
 from nose.tools import eq_, with_setup, assert_raises
 
 
-import sy
+import sy.path
 import util
 
 

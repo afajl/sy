@@ -18,6 +18,10 @@ Introduction
 .. include:: intro.rst
 
 
+Todo
+====
+.. todolist::
+
 Indices and tables
 ==================
 

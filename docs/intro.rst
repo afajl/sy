@@ -1,13 +1,13 @@
 This library is a set of easy to use modules to help with automation of 
-system administration tasks. To use the library import the version you want as 
-``sy`` in your script::
+system administration tasks::
 
-  # Import the library
-  import sy
+  import sy.path
 
   # Replace lines in '/etc/hosts' that match nis.*
   sy.path.replace_lines('/etc/hosts', 'nis.*', '10.2.3.1 ldap')
   1
+
+  import sy.net.intf
 
   # Fetch information about the interface hme0
   hme0 = sy.net.intf.get('hme0')
@@ -20,12 +20,14 @@ system administration tasks. To use the library import the version you want as
   hme0.is_up
   True
 
+  import sy.cmd
+
   # Find files named '*.pl' but time out after 10 seconds
   out, err = sy.cmd.do('find /mnt -name {}', '*.pl', timeout=10)
 
-  # Setup a rotating log file that wont fill the disk
-  sy.log.to_file('/var/tmp/app.log')
-  
+ 
+  import sy.net.ip
+
   # Check if port 22 is answering on bart
   if not sy.net.ip.port_is_open('bart', 22):
      sy.log.warning('Ssh is down on bart') 
@@ -48,7 +50,7 @@ Developing
 .. _git: http://git-scm.com
 
 The repository path for ``sy`` is located at 
-http://github.com/pauldiacon/sy.git. Clone with `git`_ by typing::
+http://github.com/pauldiacon/sy. Clone with `git`_ by typing::
 
     $ git clone http://github.com/pauldiacon/sy.git
 

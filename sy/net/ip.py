@@ -6,7 +6,7 @@
 import socket
 
 import sy
-from sy.lib import ipaddr
+import ipaddr
 
 def is_valid(ipaddress):
     ''' Checks if a IP address is valid '''

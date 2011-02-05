@@ -19,6 +19,11 @@ import shutil
 import tarfile
 import zipfile
 
+import sy.log
+import sy.cmd
+
+log = sy.log._new('sy.path')
+ 
 
 try:
     from hashlib import md5
@@ -101,7 +106,7 @@ def extract(archive, dir):
     :arg dir: Directory where the archive will be uncompressed
     '''
     if not os.path.exists(archive):
-        raise sy.Error('Archive cannot be found at %s' % archive)
+        raise RuntimeError('Archive cannot be found at %s' % archive)
 
     # we can not use the extract functions from the tarfile and zipfile
     # modules since it is not supported on python 2.4
@@ -345,13 +350,9 @@ def _replace_file(path, filter_func, encoding=None):
     fcntl.lockf(original_file.fileno(), fcntl.LOCK_EX)
 
     # get a temp file in the same directory as original file
-    try:
-        _, tmppath = tempfile.mkstemp(dir=os.path.dirname(path), 
+    _, tmppath = tempfile.mkstemp(dir=os.path.dirname(path), 
                                       prefix=os.path.basename(path),
                                       suffix='.replacement')
-    except OSError, e:
-        raise sy.Error('Unable to create tempfile for replacement: ' + str(e))
-
     try:
         tmp_file = open(tmppath, 'wb')
         filter_ret = filter_func(original_file, tmp_file)
@@ -419,7 +420,7 @@ def chown(path, owner, group):
         # convert group name to gid
         gid = grp.getgrnam(group).gr_gid
 
-    sy.log.debug('Chowning "%s" to uid=%d and gid=%d', path, uid, gid)
+    log.debug('Chowning "{}" to uid={} and gid={}', path, uid, gid)
     os.chown(path, uid, gid)
 
 def owner(path, uid=False):

@@ -31,11 +31,9 @@ Fail if exit status is not ok
   
   import sy
 
-  out, err = sy.cmd.do('ifconfig xxge0 up', 
-                        prefix='Could not take up interface')
+  out, err = sy.cmd.do('ifconfig xxge0 up')
    
   # Will fail with sy.CommandError:
-  #   Could not take up interface:\ 
   #     Command "ifconfig XXX up" did not exit with status 0:\
   #     ifconfig: interface XXX does not exist
 
@@ -75,14 +73,14 @@ which takes the same arguments as :func:`sy.cmd.do`::
           print 'Found NFS mount:', mount.strip()
 
 
-If the systems has any dangling NFS mounts the command would hang and an 
-:exc:`sy.CommandTimeoutError` would be raised.  The exceptions :exc:`sy.CommandError` 
-and its subclass :exc:`sy.CommandTimeoutError` contains all the information about 
-why the command failed:: 
+If the systems has any dangling NFS mounts the command would hang and an
+:exc:`sy.cmd.CommandTimeoutError` would be raised.  The exceptions
+:exc:`sy.cmd.CommandError` and its subclass :exc:`sy.cmd.CommandTimeoutError`
+contains all the information about why the command failed:: 
 
     try:
        sy.cmd.do('cat /etc/shadow')
-    except sy.CommandError, e:
+    except sy.cmd.CommandError, e:
         # Descriptive message of the error
        str(e) == 'Command "cat /etc/shadow" did not exit with status 0, ...'
 
@@ -103,6 +101,9 @@ sy.cmd content
 ==============
 
 .. automodule:: sy.cmd
+  .. autoexception:: CommandError
+
+  .. autoexception:: CommandTimeoutError
 
   .. autofunction:: run(command, *args, timeout=CMD_TIMEOUT)
 

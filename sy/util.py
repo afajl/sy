@@ -3,18 +3,20 @@ import time
 import traceback
 import cPickle as pickle
 
-import sy
+import sy.log
 
+log = sy.log._new('sy.util')
+ 
 
-def fail(*args, **kwargs):
-    kwargs['exitcode'] = kwargs.get('exitcode', 1)
-    exit(*args, **kwargs)
+#def fail(*args, **kwargs):
+    #kwargs['exitcode'] = kwargs.get('exitcode', 1)
+    #exit(*args, **kwargs)
 
-def exit(*args, **kwargs):
-    kwargs['file'] = kwargs.get('file', sys.stderr)
-    if args is not None:
-        sy.out(*args, **kwargs)
-    sys.exit(kwargs.get('exitcode', 0))
+#def exit(*args, **kwargs):
+    #kwargs['file'] = kwargs.get('file', sys.stderr)
+    #if args is not None:
+        #sy.out(*args, **kwargs)
+    #sys.exit(kwargs.get('exitcode', 0))
 
 
 def memoize(f):
@@ -28,7 +30,7 @@ def memoize(f):
     
         @sy.util.memoize
         def uname(arg):
-            sy.out('Getting uname', arg)
+            print 'Getting uname', arg
             return sy.cmd.outlines('uname -{}', arg)[0]
 
         uname('r')
@@ -55,79 +57,49 @@ def memoize(f):
     g.__dict__.update(f.__dict__)
     return g
 
-def attempt_to(func, *args, **kwargs):
-    ''' Try to execute a function until it succeeds
-
-    The function should return a truthy value, or a tuple where 
-    the first value is a bool indicating if the function was successfull::
 
 
-        >>> import sy
-        >>> def ok_sometimes(a):
-        ...     return True, 'Yes ' + a
+class retry(object):
+    ''' Decorator for retrying function if exception occurs::
 
-        >>> ret = sy.util.attempt(ok_sometimes, 'success!') 
-        >>> print ret
-        Yes success!
-
-
-    The ``attempt_to`` function tries to return a sane value to the caller.
-  
-    ==================  ===========
-    Function returns    Caller sees
-    ==================  ===========
-    return True         True
-    return True, 1      1
-    return True, 1, 2   (1, 2)
-    return 'foo'        'foo'
-    return ""           (fails with :exc:`sy.Error` after all attempts)
-    return False, 1, 3  (fails with :exc:`sy.Error` after all attempts)
-    Exception           (fails with ``Exception`` after all attempts)
-    ==================  ===========
-
-    If the function raises an exception on the last attempt it propagates
-    to the caller. Note that exceptions that occur before the last attempt
-    are hidden.
-
-    If the function does not succeed an :exc:`sy.Error` is raised.
-
-    :arg func: Function to execute
-    :arg attempts: Number of attempts, default 3
-    :arg backoff: Sleep for attempt*backoff seconds between attempts, default 2
-    '''
-    attempts = kwargs.pop('attempts', 3)
-    backoff = kwargs.pop('backoff', 2)
-
-    for attempt in range(attempts):
-        try:
-            res = func(*args, **kwargs)
-            if isinstance(res, tuple):
-                l = len(res)
-                if l == 0:
-                    ok = ret = res # empty tuple is falsy
-                elif l == 1:
-                    ok = ret = res[0]
-                elif l == 2:
-                    ok, ret = res
-                elif l > 2:
-                    ok, ret = res[0], res[1:]
-            else:
-                ok = res
-                ret = res
-            if ok:
-                return ret
-        except:
-            trace = ''.join(traceback.format_exception(*sys.exc_info()))
-            sy.log.info('Function %s raised an exception: %s', func.__name__,
-                        trace)
-            if attempt+1 == attempts:
-                raise 
-
-        if backoff:
-            time.sleep(attempt * backoff)
-    else:
-        raise sy.Error('Failed attempt to run %s after %d times' % (
-                        func.__name__, attempts))
+        @sy.util.retry
+        def errorprone():
+            raise Exception('fail')
+ 
+    .. note:: Hides all raised exceptions except the last one.
 
 
-    
+    :arg tries: Num tries
+    :arg exceptions: Exceptions to catch
+    :arg delay: Wait between retries
+
+
+    Copied from Peter Hoffmann: 
+        http://peter-hoffmann.com/2010/retry-decorator-python.html
+
+    .. todo:: Not tested
+
+    '''   
+    default_exceptions = (Exception)
+    def __init__(self, tries, exceptions=None, delay=0):
+        self.tries = tries
+        if exceptions is None:
+            exceptions = Retry.default_exceptions
+        self.exceptions = exceptions
+        self.delay = delay
+
+    def __call__(self, f):
+        def fn(*args, **kwargs):
+            exception = None
+            for _ in range(self.tries):
+                try:
+                    return f(*args, **kwargs)
+                except self.exceptions, e:
+                    log.debug('Retry, exception: ' +str(e))
+                    time.sleep(self.delay)
+                    exception = e
+            #if no success after tries, raise last exception
+            raise exception
+        return fn
+
+   

@@ -10,12 +10,56 @@ import os
 import select
 import signal
 import re
-import subprocess
 
-import sy as sy
+import sy.log
+import sy.util
+
+log = sy.log._new('sy.cmd')
+
 
 CMD_TIMEOUT=60
 
+
+class CommandError(Exception):
+    ''' Command failed error 
+    
+    .. attribute:: out
+
+       The stdout collected from the command
+
+    .. attribute:: err
+
+       The stdout collected from the command
+
+    .. attribute:: status
+            
+       The commands exit status
+
+    .. attribute:: cmd
+
+        The command that was run
+    '''
+    def __init__(self, msg, out=None, err=None, status=None, cmd=None):
+        self.out = out
+        self.err = err
+        self.status = status
+        self.cmd = cmd
+        Exception.__init__(self, msg)
+
+class CommandTimeoutError(CommandError):
+    ''' Command failed due to time out. Subclass of :exc:`CommandError`.
+    
+    .. attribute:: timeout
+
+       The timeout that was exceeded
+
+    '''
+ 
+    def __init__(self, msg, timeout=None, *args, **kwargs):
+        self.timeout = timeout
+        CommandError.__init__(self, msg, *args, **kwargs)
+
+ 
 
 class _subprocess(object):
     ''' Class representing a subprocess. Example usage:
@@ -135,7 +179,7 @@ def find(cmd_name):
         cmd_path = os.path.join(path, cmd_name)
         if os.access(cmd_path, os.X_OK):
             return cmd_path
-    raise sy.CommandError('Command %s not found in path: %s' % (
+    raise CommandError('Command %s not found in path: %s' % (
         cmd_name, ':'.join(_find_search_path)))
  
 def shell_escape(str):
@@ -183,34 +227,22 @@ def outlines(command, *args, **kwargs):
 def do(command, *args, **kwargs):
     r'''Spawn a command and returns stdout and stderr. If the command
     does not exit with the ``expect`` status (default 0) it raises 
-    :exc:`sy.CommandError`. If you pass a ``prefix`` it will be inserted 
-    before the reason the command failed:
-
+    :exc:`CommandError`.
 
     See :func:`run` for the other options.
 
     :arg expect: Expected exit status, default 0 
-    :arg prefix: Prefix for the error message
     :returns: stdout and stderr as strings
     '''
     expect = kwargs.pop('expect', 0)
-    prefix = kwargs.pop('prefix', '')
 
-    try:
-        status, out, err = run(command, *args, **kwargs)
-    except sy.CommandError, e:
-        # run failed, insert the prefix
-        if prefix:
-            e.msg = prefix + ': ' + e.msg
-        raise e
+    status, out, err = run(command, *args, **kwargs)
 
     if status != expect:
         escapedcmd = format_cmd(command, args)
         msg = 'Command "%s" did not exit with status %d: %s' % (
                 escapedcmd, expect, err.strip()) 
-        if prefix:
-            msg = prefix + ': ' + msg
-        raise sy.CommandError(msg, out=out, err=err, status=status, cmd=escapedcmd)
+        raise CommandError(msg, out=out, err=err, status=status, cmd=escapedcmd)
     return out, err
     
 
@@ -226,9 +258,9 @@ def run(command, *args, **kwargs):
         :arg command: Command template
         :arg args: Arguments for formatting the command, see :func:`format_cmd`
         :arg timeout: Seconds until the command times out and raises 
-                      a :exc:`sy.CommandTimeoutError`
+                      a :exc:`CommandTimeoutError`
         :returns: exit status from the command, stdout and stderr. 
-                  On timeout it raises :exc:`sy.CommandTimeoutError`
+                  On timeout it raises :exc:`CommandTimeoutError`
     '''
     assert command, 'Missing command'
  
@@ -237,7 +269,7 @@ def run(command, *args, **kwargs):
     assert kwargs == {}, 'Unknown keyword arg passed to run: ' + ','.join(kwargs.keys())
     
     escapedcmd = format_cmd(command, args)
-    sy.log.debug('Spawning: %s', escapedcmd)
+    log.debug('Spawning: {}', escapedcmd)
 
     start_time = time.time()
     process = _subprocess(escapedcmd, bufsize=bufsize)
@@ -246,8 +278,8 @@ def run(command, *args, **kwargs):
         process.kill()
         process.cleanup()
         errormsg = 'Command "%s" timed out after %d secs' % (escapedcmd, timeout)
-        sy.log.error(errormsg)
-        raise sy.CommandTimeoutError(errormsg, out=process.outdata, 
+        log.error(errormsg)
+        raise CommandTimeoutError(errormsg, out=process.outdata, 
                                      err=process.errdata, cmd=escapedcmd, 
                                      timeout=timeout)
 
@@ -256,7 +288,7 @@ def run(command, *args, **kwargs):
     err = process.errdata
     del(process)
 
-    sy.log.debug('Command result, stdout:%s, stderr:%s, exitstatus:%d', 
+    log.debug('Command result, stdout:{}, stderr:{}, exitstatus:{}', 
                  out.strip(), err.strip(), exitstatus)
-    sy.log.debug('Command took %d seconds', int(time.time() - start_time))
+    log.debug('Command took {} seconds', int(time.time() - start_time))
     return exitstatus, out, err
