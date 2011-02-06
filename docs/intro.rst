@@ -1,13 +1,11 @@
 This library is a set of easy to use modules to help with automation of 
 system administration tasks::
 
-  import sy.path
+  import sy.path, sy.net.intf, sy.net.ip, sy.cmd
 
   # Replace lines in '/etc/hosts' that match nis.*
   sy.path.replace_lines('/etc/hosts', 'nis.*', '10.2.3.1 ldap')
   1
-
-  import sy.net.intf
 
   # Fetch information about the interface hme0
   hme0 = sy.net.intf.get('hme0')
@@ -20,14 +18,9 @@ system administration tasks::
   hme0.is_up
   True
 
-  import sy.cmd
-
   # Find files named '*.pl' but time out after 10 seconds
   out, err = sy.cmd.do('find /mnt -name {}', '*.pl', timeout=10)
-
  
-  import sy.net.ip
-
   # Check if port 22 is answering on bart
   if not sy.net.ip.port_is_open('bart', 22):
      sy.log.warning('Ssh is down on bart') 

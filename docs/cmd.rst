@@ -2,9 +2,10 @@
 Running commands
 ================
 
-This module contains functions for running system commands. The difference
-between this module and the standard :mod:`subprocess` is that it is easy
-to use and all functions support setting a timeout.
+This module contains functions for running system commands. The main difference
+between this module and the standard :mod:`subprocess` is that it is easy to
+set a timeout and all output is captured even if a timeout occurs. Also it is
+easier to use.
 
 
 Examples
@@ -102,9 +103,15 @@ sy.cmd content
 
 .. automodule:: sy.cmd
 
+  Exceptions
+  ----------
+
   .. autoexception:: CommandError
 
   .. autoexception:: CommandTimeoutError
+
+  Functions
+  ---------
 
   .. autofunction:: run(command, *args, timeout=CMD_TIMEOUT)
 
