@@ -43,9 +43,9 @@ Developing
 .. _git: http://git-scm.com
 
 The repository path for ``sy`` is located at 
-http://github.com/pauldiacon/sy. Clone with `git`_ by typing::
+http://github.com/afajl/sy. Clone with `git`_ by typing::
 
-    $ git clone http://github.com/pauldiacon/sy.git
+    $ git clone http://github.com/afajl/sy.git
 
 The requirements for developing are listed in ``dev-reqs.pip`` that
 can be install with `pip`_ with:: 

@@ -2,5 +2,5 @@
 
 **Documentation:** http://sy.afajl.com
 
-**Source:** http://github.com/pauldiacon/sy
+**Source:** http://github.com/afajl/sy
 
