@@ -1,7 +1,7 @@
 '''
 :synopsis: Logging management
 
-.. todo:: Create and document log handling
+.. todo:: Document log handling
 
 .. moduleauthor: Paul Diaconescu <p@afajl.com>
 ''' 
@@ -22,6 +22,7 @@ except ImportError:
 
 if logbook_enabled:
     loggers = logbook.LoggerGroup()
+    # Flip this enable logging from the library
     loggers.disabled = True
 
 def _new(name):

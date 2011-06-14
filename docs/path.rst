@@ -4,7 +4,7 @@ Files and directories
 
 
 This module contains functions for working with files and directories.
-Check the standard modules :mod:`os.path` for more path functions. 
+Check out the standard modules :mod:`os.path` for more path functions. 
 
 
 Examples

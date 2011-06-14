@@ -98,7 +98,7 @@ class retry(object):
                     log.debug('Retry, exception: ' +str(e))
                     time.sleep(self.delay)
                     exception = e
-            #if no success after tries, raise last exception
+            # if no success after tries, raise last exception
             raise exception
         return fn
 

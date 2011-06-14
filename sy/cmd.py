@@ -153,7 +153,7 @@ def find(cmd_name):
     >>> sy.cmd.find('ifconfig')
     '/usr/sbin/ifconfig'
 
-    Searches the directories specifiend in the environment PATH and a
+    Searches the directories specified in the environment PATH and a
     couple of default directories.
 
     :param cmd_name: Command to search for.
@@ -183,7 +183,7 @@ def find(cmd_name):
         cmd_name, ':'.join(_find_search_path)))
  
 def shell_escape(str):
-    ''' Return the string with all unsafe shell character repaced '''
+    ''' Return the string with all unsafe shell character replaced '''
     return re.sub(r'''([ \t'"\$])''', r'\\\1', str)  
 
 def format_cmd(command, args):
@@ -262,8 +262,6 @@ def run(command, *args, **kwargs):
         :returns: exit status from the command, stdout and stderr. 
                   On timeout it raises :exc:`CommandTimeoutError`
     '''
-    assert command, 'Missing command'
- 
     timeout = kwargs.pop('timeout', CMD_TIMEOUT)
     bufsize = kwargs.pop('bufsize', 8192)
     assert kwargs == {}, 'Unknown keyword arg passed to run: ' + ','.join(kwargs.keys())

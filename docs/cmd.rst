@@ -113,11 +113,11 @@ sy.cmd content
   Functions
   ---------
 
-  .. autofunction:: run(command, *args, timeout=CMD_TIMEOUT)
+  .. autofunction:: run(command, *args, timeout=60)
 
-  .. autofunction:: do(command, *args, expect=0, prefix='', timeout=CMD_TIMEOUT)
+  .. autofunction:: do(command, *args, expect=0, timeout=60)
 
-  .. autofunction:: outlines(command, *args, expect=0, prefix='', timeout=CMD_TIMEOUT)
+  .. autofunction:: outlines(command, *args, expect=0, timeout=60)
 
   .. autofunction:: find(command_name) 
 
