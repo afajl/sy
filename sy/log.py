@@ -16,7 +16,8 @@ except ImportError:
         def __init__(self, name, level=0):
             self.name = name
             self.level = level
-            debug = info = warn = warning = notice = error = exception = \
+
+        debug = info = warn = warning = notice = error = exception = \
                 critical = log = lambda *a, **kw: None
 
 
